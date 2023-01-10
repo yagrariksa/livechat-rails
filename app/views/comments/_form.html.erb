@@ -1,0 +1,25 @@
+<%= form_with model: [@article, @article.comments.build] do |f| %>
+
+<div class="">
+    <%= f.label :commenter, "commenter" %>
+    <br>
+    <%= f.text_field :commenter %>
+</div>
+
+<div class="">
+    <%= f.label :body, "body" %>
+    <br>
+    <%= f.text_area :body %>
+</div>
+
+<div class="">
+  <%= f.label :status, "status" %>
+  <br>
+  <%= f.select :status, ['public', 'archived', 'private'], selected: 'public' %>
+</div>
+
+<div class="">
+    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+</div>
+
+<% end %>
