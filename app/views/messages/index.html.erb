@@ -1,0 +1,33 @@
+
+<h1>Message#index</h1>
+
+<%= form_for @message do |f| %>
+<div class="row">
+    
+    <%= f.label :body, "message" %>
+    <br>
+    <%= f.text_field :body, required: true, data: { message: true }  %>
+    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+</div>
+
+<% end %>
+
+
+<p>dummy message</p>
+
+<%= turbo_stream_from "messages" %>
+<%# Q: is it have to with div with id same as object(s) %>
+<div id="messages">
+    <%= render @messages %>
+</div>
+
+<script>
+    // document.querySelector('[data-message=true]').addEventListener('keypress', (event) => {
+    //     if(event.keyCode == 13 && event.target.value!= '') {
+    //         event.preventDefault();
+    //         console.log(App);
+    //         App.chat.send_message(event.target.value);
+    //         // event.target.value = '';
+    //     }
+    // });
+</script>
