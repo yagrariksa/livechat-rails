@@ -1,19 +1,48 @@
-
-<h1>Message#index</h1>
-
-<%= form_with(model: @message, remote: true) do |f| %>
-<div class="row">
+<div class="mc">
+    <nav class="navbar bg-body-tertiary">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Live Chat</span>
+            <div class="d-flex btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#changeNameModal">
+                Your Name
+                <i class="bi bi-pencil-square ms-2"></i>
+            </div>
+        </div>
+    </nav>
+    <%# Q: is it have to with div with id same as object(s) %>
     
-    <%= f.label :body, "message" %>
-    <br>
-    <%= f.text_field :body, required: true, data: { message: true }  %>
-    <%= f.submit "Submit", data: {disable_with: false} %>
-</div>
-<% end %>
-<p>dummy message</p>
+    <div class="container my-4 flex-grow-1 d-flex flex-column">
+        <div class="chatbox round bg-body-tertiary px-4 pb-4">
+            <%= render @messages %>
+            <div id="messages">
+            </div>
+            <%= turbo_stream_from "messages" %>
 
-<%= turbo_stream_from "messages" %>
-<%# Q: is it have to with div with id same as object(s) %>
-<div id="messages">
-    <%= render @messages %>
+        </div>
+
+        <%= form_with(model: @message, remote: true) do |f| %>
+        <div class="input-group mt-4">
+            <br>
+            <%= f.text_field :body, required: true, class:"form-control", data: { message: true }  %>
+            <%= f.submit "Send", class:"btn btn-primary col-lg-1 col-md-3 col-sm-2", data: {disable_with: false} %>
+        </div>
+        <% end %>
+    </div>
+
+    <div class="modal" tabindex="-1" id="changeNameModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
