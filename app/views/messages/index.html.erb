@@ -12,12 +12,9 @@
     <%# Q: is it have to with div with id same as object(s) %>
     
     <div class="container my-4 flex-grow-1 d-flex flex-column">
-        <div class="chatbox round bg-body-tertiary px-4 pb-4">
+        <%= turbo_stream_from "messages" %>
+        <div class="chatbox round bg-body-tertiary px-4 pb-4" id="messages">
             <%= render @messages %>
-            <div id="messages">
-            </div>
-            <%= turbo_stream_from "messages" %>
-
         </div>
 
         <% if @current_user %>

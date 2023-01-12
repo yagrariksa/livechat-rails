@@ -32,6 +32,7 @@
         
         .chat-baloon {
             max-width: 60vw;
+            background-color: var(--bs-success-bg-subtle);
         }
 
         @media screen and (max-width: 600px) {
@@ -39,6 +40,17 @@
                 max-width: 80vw;
             }
             
+        }
+        
+        <%= ".msg-#{@current_pc}" %> {
+            flex-direction: row-reverse!important;
+        }
+
+        <%= ".baloon-#{@current_pc}" %> {
+            background-color: var(--bs-primary-bg-subtle)!important;
+        }
+        <%= ".msg-#{@current_pc}" %> > div > small {
+            text-align: right!important;
         }
 
     </style>

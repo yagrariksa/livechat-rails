@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
         @messages = Message.all.order(created_at: :asc)
         @current_user = session[:current_name]
         if !session[:current_pc]
-            session[:current_pc] = rand()
+            session[:current_pc] = rand().to_s.tr('.','')
         end
         @current_pc = session[:current_pc]
     end
@@ -21,7 +21,6 @@ class MessagesController < ApplicationController
     def clearChat
         Message.delete_all
         redirect_to root_path
-
     end
 
     private
