@@ -1,8 +1,13 @@
 <div class="d-flex flex-row-reverse">
     <div class="d-flex flex-column">
-        <small class="text-end text-secondary mt-2">peeps</small>
+        <small class="text-end text-secondary mt-2">
+            peeps
+        </small>
         <span class="p-2 bg-primary-subtle round shadow-sm chat-baloon">
             <%= message.body %>
         </span>
+        <small class="text-end text-secondary mt-2" style="opacity: .5;">
+            <%= message.msg_time %>
+        </small>
     </div>
 </div>
