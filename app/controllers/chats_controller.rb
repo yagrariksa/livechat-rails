@@ -1,5 +1,0 @@
-class ChatsController < ApplicationController
- 
-  
-
-end
