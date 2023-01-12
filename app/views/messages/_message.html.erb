@@ -1,9 +1,9 @@
-<div class="d-flex flex-row-reverse">
+<div class="d-flex <%= (message.pc == @current_pc.to_s) ? "flex-row-reverse" : "" %>">
     <div class="d-flex flex-column">
         <small class="text-end text-secondary mt-2">
-            peeps
+            <%= message.sender %>
         </small>
-        <span class="p-2 bg-primary-subtle round shadow-sm chat-baloon">
+        <span class="p-2 <%= (message.pc == session[:current_pc].to_s) ? "bg-primary-subtle" : "bg-success-subtle" %>  round shadow-sm chat-baloon">
             <%= message.body %>
         </span>
         <small class="text-end text-secondary mt-2" style="opacity: .5;">
