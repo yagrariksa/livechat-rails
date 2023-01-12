@@ -5,13 +5,7 @@ class MessagesController < ApplicationController
     end
 
     def create
-        @message = Message.new(params[:message].permit!)
-        if @message.save
-          flash[:success] = "Message successfully created"
-        else
-          flash[:error] = "Something went wrong"
-        end
-        redirect_to messages_path
+        @message = Message.create(body: message_params[:body])
     end
     
 
