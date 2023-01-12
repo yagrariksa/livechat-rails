@@ -11,11 +11,11 @@ class Message < ApplicationRecord
         elsif created_at.to_date.yesterday?
             return "Yesterday"
         else
-            return created_at.strftime("- %d %b")
+            return created_at.strftime("%d %b")
         end
     end
 
     def msg_time
-        return time + " " + day
+        return day + ", " + time
     end
 end
