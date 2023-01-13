@@ -2,7 +2,7 @@ import consumer from "channels/consumer"
 
 consumer.subscriptions.create("ChatChannel", {
   connected() {
-    // alert("connected");
+    alert("connected");
     // Called when the subscription is ready for use on the server
   },
 
@@ -11,6 +11,13 @@ consumer.subscriptions.create("ChatChannel", {
   },
 
   received(data) {
+    // alert("recieve");
+    console.log(data)
+
+    var el = document.createElement('p');
+    el.innerText = data.message
+
+    document.querySelector('#messages').appendChild(el)
     // Called when there's incoming data on the websocket for this channel
   },
 

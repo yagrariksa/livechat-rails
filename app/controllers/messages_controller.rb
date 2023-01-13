@@ -6,6 +6,8 @@ class MessagesController < ApplicationController
 
     def create
         @message = Message.create(body: message_params[:body])
+
+        ChatChannel.broadcast_to "chat_channel", {message: @message.body, other: "HEY"}
     end
     
 

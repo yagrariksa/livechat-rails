@@ -7,7 +7,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  database: myapp_development
+  database: myapp_experiment_action_cable
   pool: 5
   username: rubyblog
   password: password
