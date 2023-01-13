@@ -10,18 +10,32 @@
     </nav>
 
     <%# Q: is it have to with div with id same as object(s) %>
+
+    <template>
+        <div class="d-flex ">
+            <div class="d-flex flex-column">
+                <small class="text-secondary mt-2">
+                </small>
+                <span class="p-2  round shadow-sm chat-baloon">
+                </span>
+                <small class="text-secondary mt-2" style="opacity: .5;">
+                </small>
+            </div>
+        </div>
+    </template>
     
     <div class="container my-4 flex-grow-1 d-flex flex-column">
-        <%= turbo_stream_from "messages" %>
         <div class="chatbox round bg-body-tertiary px-4 pb-4" id="messages">
             <%= render @messages %>
         </div>
 
         <% if @current_user %>
-        <%= form_with(model: @message, remote: true) do |f| %>
+        <%= form_with(model: @message, remote: true, data: {
+            controller: "reset-form", action: "turbo:submit-end->reset-form#reset"
+        }) do |f| %>
         <div class="input-group mt-4">
             <br>
-            <%= f.text_field :body, required: true, class:"form-control", data: { message: true }  %>
+            <%= f.text_field :body, required: true, class:"form-control", id: "mychatfieldd", data: { message: true }  %>
             <%= f.submit "Send", class:"btn btn-primary col-lg-1 col-md-3 col-sm-2", data: {disable_with: false} %>
         </div>
         <% end %>
@@ -55,6 +69,15 @@
         <% if !@current_user %>
         document.querySelector('#modalTrigger').click()
         <% end %>
+
+        const chatbox = document.querySelector('#messages');
+
+        const scrollDown = () => {
+            chatbox.scrollTop = chatbox.scrollHeight
+        }
+
+        scrollDown()
+
     });
 
 </script>

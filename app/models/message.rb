@@ -1,6 +1,4 @@
 class Message < ApplicationRecord
-    after_create_commit { broadcast_append_to "messages"}
-
     def time
         return created_at.strftime("%H:%M")
     end
@@ -17,5 +15,14 @@ class Message < ApplicationRecord
 
     def msg_time
         return day + ", " + time
+    end
+
+    def to_render
+        return {
+            owner: self.sender,
+            message: self.body,
+            time: self.msg_time,
+            pc: self.pc
+        }
     end
 end

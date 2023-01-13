@@ -11,6 +11,8 @@ class MessagesController < ApplicationController
 
     def create
         @message = Message.create(body: message_params[:body], sender: session[:current_name], pc: session[:current_pc])
+
+        ChatChannel.broadcast_to "chat_channel", object: @message.to_render
     end
 
     def setName
